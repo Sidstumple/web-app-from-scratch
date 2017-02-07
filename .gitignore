@@ -1,0 +1,16 @@
+# vendor packages
+node_modules
+
+# project meta
+.DS-Store
+.idea
+.settings
+*.sublime-projecti
+*.sublime-workspace
+
+# npm cruft
+npm-debug.log
+
+# dist
+dist
+
