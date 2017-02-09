@@ -3,19 +3,11 @@
 (function () {
 	'strict mode';
 
-	const practices = document.getElementById('practices');
-	const landing = document.getElementById('landing');
+	const allSections = document.querySelectorAll('section');
 
 	const sections = {
 		toggle: route => {
-			if (route === '#practices') {
-				landing.classList.add('hide');
-				practices.classList.remove('hide');
-			}
-			if (route === '#landing') {
-				practices.classList.add('hide');
-				landing.classList.remove('hide');
-			}
+			allSections.forEach(section => route === `#${section.id}` ? section.classList.remove('hide') : section.classList.add('hide'));
 		}
 	};
 
