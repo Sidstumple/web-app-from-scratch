@@ -1,0 +1,38 @@
+h1 {
+	font-family: serif;
+	font-style: italic;
+}
+
+section {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.hide {
+	display: none;
+}
+
+#landing ul {
+	padding: 0;
+}
+#landing li {
+	list-style: none;
+}
+
+.button {
+	text-decoration: none;
+	color: hotpink;
+	border: 2px solid hotpink;
+	padding: 1em;
+	transition: 300ms;
+}
+
+.button:hover {
+	background-color: hotpink;
+	color: white;
+	transition: 300ms;
+}
