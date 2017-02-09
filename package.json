@@ -1,7 +1,7 @@
 {
   "name": "web-app-from-scratch",
   "version": "1.0.0",
-  "description": "## Research on jQuery, applicable on libraries as well. > Michael S. Mikowski. 2016. Why jQuery?",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "xo"
