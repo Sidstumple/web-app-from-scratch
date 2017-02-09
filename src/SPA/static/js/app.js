@@ -12,7 +12,10 @@
 	};
 
 	const routes = {
-		init: window.onhashchange = () => sections.toggle(window.location.hash)
+		init: () => {
+			window.location.hash ? sections.toggle(window.location.hash) : sections.toggle(`#${allSections[0].id}`);
+			window.onhashchange = () => sections.toggle(window.location.hash)
+		}
 	};
 
 	const app = {
