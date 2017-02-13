@@ -3,11 +3,10 @@
 (function () {
 	'strict mode';
 
-	const allSections = document.querySelectorAll('section');
-
 	const sections = {
+		all: document.querySelectorAll('section'),
 		toggle(route) {
-			allSections.forEach(section => {
+			this.all.forEach(section => {
 				route === `#${section.id}` ? section.classList.remove('hide') : section.classList.add('hide');
 			});
 		}
@@ -15,7 +14,7 @@
 
 	const routes = {
 		init() {
-			window.location.hash ? sections.toggle(window.location.hash) : sections.toggle(`#${allSections[0].id}`);
+			window.location.hash ? sections.toggle(window.location.hash) : sections.toggle(`#${sections.all[0].id}`);
 			window.onhashchange = () => sections.toggle(window.location.hash);
 		}
 	};
