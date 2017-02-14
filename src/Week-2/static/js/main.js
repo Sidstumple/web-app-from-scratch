@@ -36,8 +36,21 @@
 		update(chosenPlanet) {
 			model.planets.forEach(planet => {
 				if (planet.name === chosenPlanet) {
-					document.querySelector('section').appendChild(document.createElement('p').appendChild(document.createTextNode(`Name: ${planet.name}`)));
-					document.querySelector('section').appendChild(document.createElement('p').appendChild(document.createTextNode(`Diameter: ${planet.diameter}`)));
+					const name = document.createElement('p');
+					name.appendChild(document.createTextNode(`Name: ${planet.name}`));
+					document.querySelector('section').appendChild(name);
+
+					const diameter = document.createElement('p');
+					diameter.appendChild(document.createTextNode(`Diameter: ${planet.diameter}`));
+					document.querySelector('section').appendChild(diameter);
+
+					const gravity = document.createElement('p');
+					gravity.appendChild(document.createTextNode(`Gravity: ${planet.gravity}`));
+					document.querySelector('section').appendChild(gravity);
+
+					const population = document.createElement('p');
+					population.appendChild(document.createTextNode(`Population: ${planet.population}`));
+					document.querySelector('section').appendChild(population);
 				}
 			});
 		}
