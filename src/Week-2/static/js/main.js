@@ -6,10 +6,14 @@
 	const controller = {
 		listen(arr) {
 			const dropdowns = Array.from(document.querySelectorAll('select'));
-
 			dropdowns.forEach(dd => {
-				dd.addEventListener('change', () => {
+				dd.addEventListener('change', event => {
 					if (dd.value.length > 1) {
+						console.log(event);
+						// Instead of updating the DOM I remove and insert
+						// new content everytime because insertAdjacentHTML is
+						// 142 times faster than innerHTML
+						// Source: https://jsperf.com/insertadjacenthtml-perf/28
 						view.clean();
 						view.update(arr, dd.value, dd.name);
 					}
@@ -38,9 +42,11 @@
 		update(arr, value, type) {
 			arr.forEach(item => {
 				if (item.name === value) {
+					const dropdowns = document.querySelectorAll('select');
 					const section = document.querySelector('section');
 					if (type === 'planets') {
-						console.log(item.name);
+						dropdowns[1].selectedIndex = 0;
+						dropdowns[2].selectedIndex = 0;
 						section.insertAdjacentHTML('beforeend',
 							`<p>Name: <span>${item.name}</span></p>
 							<p>Diameter: <span>${item.diameter}</span></p>
@@ -51,7 +57,8 @@
 						);
 					}
 					if (type === 'people') {
-						console.log(item.name);
+						dropdowns[0].selectedIndex = 0;
+						dropdowns[2].selectedIndex = 0;
 						section.insertAdjacentHTML('beforeend',
 							`<p>Name: <span>${item.name}</span></p>
 							<p>Birth year: <span>${item.birth_year}</span></p>
@@ -62,7 +69,8 @@
 						);
 					}
 					if (type === 'starships') {
-						console.log(item.name);
+						dropdowns[0].selectedIndex = 0;
+						dropdowns[1].selectedIndex = 0;
 						section.insertAdjacentHTML('beforeend',
 							`<p>Name: <span>${item.name}</span></p>
 							<p>Model: <span>${item.model}</span></p>
@@ -90,12 +98,15 @@
 			try {
 				let counter = 1;
 				let data;
+				// You can not request the entirety of a category,
+				// instead SWAPI returns a few and a property 'next',
+				// which contains the URL of the subsequent request.
 				do {
 					let response = await fetch(`http://swapi.co/api/${endpoint}/?page=${counter}`);
 					data = await response.json();
 					arr.push(...data.results);
 					counter++;
-				} while (data.next);
+				} while (data.next); // Until next: null
 				view.init(arr, selector);
 			} catch (err) {
 				console.error(err);
