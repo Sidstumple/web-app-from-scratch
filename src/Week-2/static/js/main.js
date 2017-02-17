@@ -44,6 +44,7 @@
 			// In the meanwhile the DOM is loaded and you see the entire crawl
 			// instead of a slide in.
 			setTimeout(function () {
+				//remove and add animation class here :)
 				document.querySelector('section').classList.remove('hide');
 			}, 2500);
 		},
